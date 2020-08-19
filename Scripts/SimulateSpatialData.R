@@ -60,14 +60,14 @@ for (i in seq_along(split.loans)){
       # spatial attributes in 2 steps
       
       # Assign elements from a vector
-      if (split.loans[[i]][[j,"event.concept.name"]] %in% c("Vendor creates invoice","Vendor creates debit memo")){ #anywhere 
+      if (split.loans[[i]][[j,"event.concept.name"]] %in% c("VendorÂ createsÂ invoice","VendorÂ createsÂ debitÂ memo")){ #anywhere 
         split.loans[[i]][[j,"x"]] <- p_cluster$x[i]
         split.loans[[i]][[j,"y"]] <- p_cluster$y[i]
       }else if (stringr::str_detect(split.loans[[i]][[j,"event.concept.name"]],"SRM")){   #1 or 2              #(split.loans[[i]][[j,"activity_id"]] %in% c("Declaration FINAL_APPROVED by SUPERVISOR","Declaration REJECTED by SUPERVISOR","Declaration FOR_APPROVAL by SUPERVISOR ")){
         mat1 <- sample.int(ppois2$n,1,replace = TRUE) #ppois[which.max(distHaversine(cbind(ppois$x,ppois$y),cbind(p_cluster$x[i],p_cluster$y[i])))]
         split.loans[[i]][[j,"x"]] <- ppois2[mat1]$x
         split.loans[[i]][[j,"y"]] <- ppois2[mat1]$y
-      }else if (split.loans[[i]][[j,"event.concept.name"]] %in% c("Record Service Entry Sheet","Record Goods Receipt","Record Invoice Receipt","Cancel Invoice Receipt","Cancel Subsequent Invoice","Record Subsequent Invoice")){ #c.100
+      }else if (split.loans[[i]][[j,"event.concept.name"]] %in% c("RecordÂ ServiceÂ EntryÂ Sheet","RecordÂ GoodsÂ Receipt","RecordÂ InvoiceÂ Receipt","CancelÂ InvoiceÂ Receipt","CancelÂ SubsequentÂ Invoice","RecordÂ SubsequentÂ Invoice")){ #c.100
         mat2 <- sample.int(ppois$n,1,replace = TRUE) #ppois2[which.max(distHaversine(cbind(ppois2$x,ppois2$y),cbind(p_cluster$x[i],p_cluster$y[i])))]
         split.loans[[i]][[j,"x"]] <- ppois$n[mat2]$x
         split.loans[[i]][[j,"y"]] <- ppois$n[mat2]$y
